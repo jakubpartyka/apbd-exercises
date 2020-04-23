@@ -28,34 +28,20 @@ JOIN Medicament on Medicament.IdMedicament = Prescription_Medicament.IdMedicamen
                     while (dr.Read()){
                         var recepta = new Prescriptions();
                         recepta.IdPerscription = (int)dr["IdPrescription"];
-
                         recepta.Date = DateTime.Parse(dr["Date"].ToString());
-
                         recepta.DueTime = DateTime.Parse(dr["DueDate"].ToString());
-
                         recepta.IdPatient = (int)dr["IdPatient"];
-
                         recepta.IdDoctor = (int)dr["IdDoctor"];
-                        
                         var permed = new PrescriptionsMedicament();
-
                         var listaMed = new List<Medicament>();
-
                         permed.IdPerscription = (int)dr["IdPrescription"]; ;
-
                         permed.IdMedicament = (int)dr["IdMedicament"];
-
                         listaMed.Dose = (int)dr["Dose"];
-
                         listaMed.Details = (dr["Details"].ToString());
-                        
                         lista.Add(permed);
-                     
                         list.Add(recepta);   
                     }
-
                     return Ok(list + "\n" + lista);
-
                 }
                 catch (SqlException sql)
                 {
